@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { Callout, FontWeights, mergeStyleSets, PrimaryButton, Stack, Text } from '@fluentui/react'
 
 import styled from 'styled-components'
@@ -29,7 +29,7 @@ const CenteredBox = styled.div`
   height: 100vh;
 `
 
-const Root: React.FC = () => {
+export const Root: React.FC = () => {
   const [isCalloutVisible, { toggle: toggleIsCalloutVisible }] = useBoolean(false)
 
   return (
@@ -42,7 +42,7 @@ const Root: React.FC = () => {
           Primary Button
         </PrimaryButton>
         {isCalloutVisible && (
-          <Callout target={'#testButton'} className={styles.callout} onDismiss={toggleIsCalloutVisible}>
+          <Callout target="#testButton" className={styles.callout} onDismiss={toggleIsCalloutVisible}>
             <Text block variant="xLarge" className={styles.title}>
               Callout title here
             </Text>
@@ -56,5 +56,3 @@ const Root: React.FC = () => {
     </CenteredBox>
   )
 }
-
-export default Root

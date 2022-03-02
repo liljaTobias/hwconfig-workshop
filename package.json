@@ -5,12 +5,16 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "lint": "yarn lint:ts",
+    "lint:ts": "eslint --ext '.ts, .tsx' --cache"
   },
   "dependencies": {
     "@fluentui/react": "^8.56.3",
+    "@fluentui/react-hooks": "^8.4.0",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.12",
+    "eslint-plugin-import": "^2.25.4",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -19,7 +23,13 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.24",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
     "eslint": "^8.10.0",
+    "eslint-config-typescript-shareable": "^1.7.0",
+    "eslint-plugin-functional": "^4.2.0",
+    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.5.1",
     "ts-loader": "^9.2.7",
