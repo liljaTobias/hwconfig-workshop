@@ -3,6 +3,9 @@ import { Callout, FontWeights, mergeStyleSets, PrimaryButton, Stack, Text } from
 
 import styled from 'styled-components'
 import { useBoolean } from '@fluentui/react-hooks'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { Example1 } from './examples/example_1'
 
 // Use fluentui's build in styles-manager
 const styles = mergeStyleSets({
@@ -29,30 +32,32 @@ const CenteredBox = styled.div`
   height: 100vh;
 `
 
+const queryClient = new QueryClient()
+
 export const Root: React.FC = () => {
   const [isCalloutVisible, { toggle: toggleIsCalloutVisible }] = useBoolean(false)
 
   return (
-    <CenteredBox>
-      <Stack>
-        <Text variant="xxLarge" block>
-          Hello, world!
-        </Text>
-        <PrimaryButton id="testButton" onClick={toggleIsCalloutVisible}>
-          Primary Button
-        </PrimaryButton>
-        {isCalloutVisible && (
-          <Callout target="#testButton" className={styles.callout} onDismiss={toggleIsCalloutVisible}>
-            <Text block variant="xLarge" className={styles.title}>
-              Callout title here
-            </Text>
-            <Text block variant="small">
-              Message body is optional. If help documentation is available, consider adding a link to learn more at the
-              bottom.
-            </Text>
-          </Callout>
-        )}
-      </Stack>
-    </CenteredBox>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <CenteredBox>
+        <Stack>
+          <Text variant="xxLarge" block>
+            HWconfig Workshop
+          </Text>
+          <PrimaryButton id="testButton" onClick={toggleIsCalloutVisible}>
+            Get data from API
+          </PrimaryButton>
+          {isCalloutVisible && (
+            <Callout target="#testButton" className={styles.callout} onDismiss={toggleIsCalloutVisible}>
+              <Text block variant="xLarge" className={styles.title}>
+                Response from the server
+              </Text>
+              <Example1 />
+            </Callout>
+          )}
+        </Stack>
+      </CenteredBox>
+    </QueryClientProvider>
   )
 }
